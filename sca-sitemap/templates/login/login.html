@@ -12,7 +12,7 @@
         SCA SITEMAP
       </h2>
 
-      <form action="#" method="POST" class="space-y-5">
+      <form action="/login" method="POST" class="space-y-5">
         <div>
           <label for="email" class="block text-gray-700 font-medium mb-2"
             >Email</label
@@ -43,9 +43,7 @@
           <label class="flex items-center text-sm text-gray-600">
             <input type="checkbox" class="mr-2" /> Remember me
           </label>
-          <a
-            href="{{ request.url_for('forgot-password') }}"
-            class="text-blue-500 text-sm hover:underline"
+          <a href="" class="text-blue-500 text-sm hover:underline"
             >Forgot password?</a
           >
         </div>
@@ -58,11 +56,13 @@
         </button>
       </form>
 
+      {% if request.query_params.get('error') %}
+      <p class="text-red-500 mt-3">Invalid email or password</p>
+      {% endif %}
+
       <p class="mt-6 text-center text-gray-600 text-sm">
         Don't have an account?
-        <a
-          href="{{ request.url_for('signup') }}"
-          class="text-blue-500 hover:underline"
+        <a href="{{ url_for('register')}}" class="text-blue-500 hover:underline"
           >Sign up</a
         >
       </p>

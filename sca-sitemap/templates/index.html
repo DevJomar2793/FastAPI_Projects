@@ -3,185 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>Inventory System</title>
   </head>
-
-  <body class="bg-gray-100 font-sans">
-    <!-- Sidebar -->
-    <div class="flex h-screen">
-      <aside class="w-64 bg-gray-800 text-gray-100 flex flex-col">
-        <div class="p-6 text-2xl font-bold border-b border-gray-700">
-          🧾 Inventory
-        </div>
-        <nav class="flex-1 p-4">
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Dashboard</a
-          >
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Products</a
-          >
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Suppliers</a
-          >
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Reports</a
-          >
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Settings</a
-          >
-        </nav>
-        <!-- <div class="p-4 border-t border-gray-700">
-          <a href="#" class="block py-2 text-red-400 hover:text-red-300"
-            >Logout</a
-          >
-        </div> -->
-      </aside>
-
-      <!-- Main Content -->
-      <main class="flex-1 flex flex-col">
-        <!-- Top Nav -->
-        <header
-          class="bg-white shadow flex justify-between items-center px-6 py-4"
+  <body class="bg-gray-100 text-gray-800">
+    <!-- Hero Section -->
+    <section class="bg-indigo-600 text-white py-20">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">Smart Inventory Management</h1>
+        <p class="text-lg mb-6">
+          Track, manage, and organize your inventory with ease.
+        </p>
+        <a
+          href="#features"
+          class="bg-white text-indigo-700 px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-200"
+          >Get Started</a
         >
-          <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+      </div>
+    </section>
 
-          <!-- User Profile Dropdown -->
-          <div class="relative inline-block text-left">
-            <button
-              id="userMenuButton"
-              class="flex items-center space-x-3 focus:outline-none"
-            >
-              <img
-                class="w-10 h-10 rounded-full border"
-                src="https://i.pravatar.cc/100?img=3"
-                alt="User"
-              />
-              <span class="text-gray-800 font-medium">Jomar Cerrado</span>
-              <svg
-                class="w-4 h-4 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Features</h2>
 
-            <div
-              id="userDropdown"
-              class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
-            >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Profile</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Settings</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >Logout</a
-              >
-            </div>
-          </div>
-        </header>
-
-        <!-- Dashboard Content -->
-        <div class="p-6 space-y-6 overflow-y-auto">
-          <!-- Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div
-              class="bg-white p-4 rounded-lg shadow hover:shadow-md transition"
-            >
-              <h3 class="text-sm text-gray-500">Total Products</h3>
-              <p class="text-2xl font-bold text-gray-800 mt-2">1,245</p>
-            </div>
-            <div
-              class="bg-white p-4 rounded-lg shadow hover:shadow-md transition"
-            >
-              <h3 class="text-sm text-gray-500">Out of Stock</h3>
-              <p class="text-2xl font-bold text-red-600 mt-2">23</p>
-            </div>
-            <div
-              class="bg-white p-4 rounded-lg shadow hover:shadow-md transition"
-            >
-              <h3 class="text-sm text-gray-500">Low Stock</h3>
-              <p class="text-2xl font-bold text-yellow-500 mt-2">48</p>
-            </div>
-            <div
-              class="bg-white p-4 rounded-lg shadow hover:shadow-md transition"
-            >
-              <h3 class="text-sm text-gray-500">Suppliers</h3>
-              <p class="text-2xl font-bold text-green-600 mt-2">12</p>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-2">Real-Time Tracking</h3>
+            <p>Monitor stock levels and updates instantly.</p>
           </div>
 
-          <!-- Inventory Table -->
-          <div class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Recent Inventory</h2>
-            <table class="w-full border-collapse">
-              <thead>
-                <tr class="bg-gray-100 text-left">
-                  <th class="p-3 border-b">Product</th>
-                  <th class="p-3 border-b">Category</th>
-                  <th class="p-3 border-b">Stock</th>
-                  <th class="p-3 border-b">Price</th>
-                  <th class="p-3 border-b">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="hover:bg-gray-50">
-                  <td class="p-3 border-b">Wireless Mouse</td>
-                  <td class="p-3 border-b">Accessories</td>
-                  <td class="p-3 border-b">58</td>
-                  <td class="p-3 border-b">$25.00</td>
-                  <td class="p-3 border-b">
-                    <button class="text-blue-500 hover:underline">Edit</button>
-                    <button class="text-red-500 hover:underline ml-2">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50">
-                  <td class="p-3 border-b">Laptop Stand</td>
-                  <td class="p-3 border-b">Office</td>
-                  <td class="p-3 border-b">32</td>
-                  <td class="p-3 border-b">$40.00</td>
-                  <td class="p-3 border-b">
-                    <button class="text-blue-500 hover:underline">Edit</button>
-                    <button class="text-red-500 hover:underline ml-2">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="bg-white p-6 rounded-xl shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-2">Low Stock Alerts</h3>
+            <p>Get notified when items reach critical levels.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-2">Easy Reporting</h3>
+            <p>Generate sales and inventory reports in seconds.</p>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
 
-    <script>
-      const userMenuButton = document.getElementById("userMenuButton");
-      const userDropdown = document.getElementById("userDropdown");
-      userMenuButton.addEventListener("click", () => {
-        userDropdown.classList.toggle("hidden");
-      });
-      window.addEventListener("click", (e) => {
-        if (!userMenuButton.contains(e.target)) {
-          userDropdown.classList.add("hidden");
-        }
-      });
-    </script>
+    <!-- CTA Section -->
+    <section class="bg-gray-800 text-white py-16">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          Start Managing Your Inventory Today
+        </h2>
+        <p class="mb-6">
+          Boost efficiency and reduce manual workload with our system.
+        </p>
+        <a
+          href="{{ request.url_for('login') }}"
+          class="bg-indigo-500 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-400"
+          >Sign In Now</a
+        >
+      </div>
+    </section>
+
+    <footer class="py-6 text-center text-gray-600 bg-gray-200 mt-10">
+      <p>© 2025 Inventory System. All rights reserved.</p>
+    </footer>
   </body>
 </html>

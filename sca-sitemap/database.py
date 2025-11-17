@@ -1,15 +1,19 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-# Replace with your own MySQL credentials
+# Configure your database URL here
 DATABASE_URL = "mysql+pymysql://root:1234555@localhost:8889/sca-sitemap-v2"
 
-# Create the SQLAlchemy engine
+# Create engine and session
 engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
-# Create a session
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Base class for models
 Base = declarative_base()
+
+#Dependency for FastAPI
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
