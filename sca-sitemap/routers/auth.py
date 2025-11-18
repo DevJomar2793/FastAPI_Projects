@@ -8,6 +8,16 @@ from passlib.context import CryptContext
   
 router = APIRouter() # Define router
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") # Password hashing context
+
+# Landing Page
+@router.get("/", response_class=HTMLResponse)
+def landing_page(request: Request):
+    return request.app.state.templates.TemplateResponse("index.html", {"request": request})
+
+# Forgot-Password Page
+@router.get("/forgot-password", response_class=HTMLResponse)
+def forgot_password_page(request: Request):
+    return request.app.state.templates.TemplateResponse("login/forgot-password.html", {"request": request})
  
 
 # Login Page
@@ -51,3 +61,9 @@ def register(request: Request, full_name: str = Form(...), email: str = Form(...
     db.refresh(new_user)
 
     return RedirectResponse("/login?success=1", status_code=302)
+
+@router.get("/logout")
+def logout():
+    response = RedirectResponse("/login", status_code=302)
+    response.delete_cookie("user_id")
+    return response
