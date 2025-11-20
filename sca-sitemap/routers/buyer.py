@@ -5,10 +5,10 @@ from dependency import get_current_user
 
 
 
-router = APIRouter(prefix="/dashboard") # Define router
+router = APIRouter(prefix="/buyer") # Define router
 templates = Jinja2Templates(directory="templates") 
 
 # Dashboard Page
-@router.get("/")
+@router.get("/", name="buyer_dashboard")
 def dashboard(request: Request, current_user = Depends(get_current_user)):
-    return templates.TemplateResponse("dashboard.html", {"request": request, "user": current_user})
+    return templates.TemplateResponse("buyer.html", {"request": request, "user": current_user})

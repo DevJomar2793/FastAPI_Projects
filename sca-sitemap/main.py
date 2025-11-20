@@ -2,12 +2,14 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from routers import auth, dashboard
+from starlette.middleware.sessions import SessionMiddleware
+from routers import auth, dashboard, buyer
 from database import Base, engine
-from models import User
+
 
 
 app = FastAPI() # Initialize FastAPI app
+app.add_middleware(SessionMiddleware, secret_key="1234555") # Session Middleware
 
 #Create Tables
 Base.metadata.create_all(bind=engine)
@@ -19,6 +21,7 @@ app.state.templates = templates
 
 #Routers
 app.include_router(auth.router)
-app.include_router(dashboard.router)
+app.include_router(dashboard.router)  # Dashboard router
+app.include_router(buyer.router)      # Buyer router
 
     
