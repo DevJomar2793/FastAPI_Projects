@@ -16,6 +16,11 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") # Password has
 def landing_page(request: Request):
     return request.app.state.templates.TemplateResponse("index.html", {"request": request})
 
+# Check template
+@router.get("/check-template", response_class=HTMLResponse)
+def template_page(request: Request):
+    return request.app.state.templates.TemplateResponse("testtemplate.html", {"request": request})
+
 
 # Forgot-Password Page
 @router.get("/forgot-password", response_class=HTMLResponse)

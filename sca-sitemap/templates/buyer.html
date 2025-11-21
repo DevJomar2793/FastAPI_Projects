@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="{ open: false }">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
   </head>
 
   <body class="bg-gray-100 font-sans">
@@ -50,12 +54,7 @@
               </li>
             </ul>
           </li>
-          <!-- <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Products</a
-          >
-          <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
-            >Suppliers</a
-          > -->
+
           <a href="#" class="block py-2.5 px-4 rounded hover:bg-gray-700"
             >Reports</a
           >
@@ -63,11 +62,6 @@
             >Settings</a
           >
         </nav>
-        <!-- <div class="p-4 border-t border-gray-700">
-          <a href="#" class="block py-2 text-red-400 hover:text-red-300"
-            >Logout</a
-          >
-        </div> -->
       </aside>
 
       <!-- Main Content -->
@@ -204,25 +198,129 @@
       </main>
     </div>
 
-    <script>
-      const userMenuButton = document.getElementById("userMenuButton");
-      const userDropdown = document.getElementById("userDropdown");
-      userMenuButton.addEventListener("click", () => {
-        userDropdown.classList.toggle("hidden");
-      });
-      window.addEventListener("click", (e) => {
-        if (!userMenuButton.contains(e.target)) {
-          userDropdown.classList.add("hidden");
-        }
-      });
+    <!-- Floating Button for Add Pages-->
+    <button
+      @click="open = true"
+      class="fixed bottom-6 right-6 bg-green-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-green-700 transition-all"
+    >
+      Add Item
+    </button>
 
-      function toggleMenu(menuId) {
-        const menu = document.getElementById(menuId);
-        const arrow = document.getElementById(menuId.replace("Menu", "Arrow"));
+    <!-- Popup Background -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <!-- Popup Form -->
+      <div
+        x-show="open"
+        x-transition
+        class="bg-white rounded-lg shadow-xl w-full max-w-md p-6"
+      >
+        <h2 class="text-xl font-semibold mb-4">Add New Page</h2>
 
-        menu.classList.toggle("hidden");
-        arrow.textContent = menu.classList.contains("hidden") ? "▼" : "▲";
-      }
-    </script>
+        <form>
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Alpha</label>
+            <input
+              type="text"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Screen Number</label>
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Screen Type</label>
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium"
+              >Screen Description</label
+            >
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">File Label</label>
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Screen Label</label>
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Notes</label>
+            <textarea
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Sitemap</label>
+            <textarea
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-end gap-3 mt-4">
+            <button
+              type="button"
+              @click="open = false"
+              class="px-4 py-2 border rounded-lg"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
+  <script>
+    const userMenuButton = document.getElementById("userMenuButton");
+    const userDropdown = document.getElementById("userDropdown");
+    userMenuButton.addEventListener("click", () => {
+      userDropdown.classList.toggle("hidden");
+    });
+    window.addEventListener("click", (e) => {
+      if (!userMenuButton.contains(e.target)) {
+        userDropdown.classList.add("hidden");
+      }
+    });
+
+    function toggleMenu(menuId) {
+      const menu = document.getElementById(menuId);
+      const arrow = document.getElementById(menuId.replace("Menu", "Arrow"));
+
+      menu.classList.toggle("hidden");
+      arrow.textContent = menu.classList.contains("hidden") ? "▼" : "▲";
+    }
+  </script>
 </html>

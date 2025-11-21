@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ open: false }">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Popup Form</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <!-- Floating Button -->
+    <button
+      @click="open = true"
+      class="fixed bottom-6 right-6 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-all"
+    >
+      Add Item
+    </button>
+
+    <!-- Popup Background -->
+    <div
+      x-show="open"
+      x-transition.opacity
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+    >
+      <!-- Popup Form -->
+      <div
+        x-show="open"
+        x-transition
+        class="bg-white rounded-lg shadow-xl w-full max-w-md p-6"
+      >
+        <h2 class="text-xl font-semibold mb-4">Add New Item</h2>
+
+        <form>
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Item Name</label>
+            <input
+              type="text"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Quantity</label>
+            <input
+              type="number"
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="block mb-1 text-sm font-medium">Description</label>
+            <textarea
+              class="w-full border rounded-lg p-2 focus:ring focus:ring-blue-200"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-end gap-3 mt-4">
+            <button
+              type="button"
+              @click="open = false"
+              class="px-4 py-2 border rounded-lg"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
