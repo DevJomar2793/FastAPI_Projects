@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from dependency import get_current_user
+from pathlib import Path
+from Backend.dependency import get_current_user
 
 
 
 router = APIRouter(prefix="/dashboard") # Define router
-templates = Jinja2Templates(directory="templates") 
+templates = Jinja2Templates(directory="Frontend/templates")
 
 # Dashboard Page
 @router.get("/")

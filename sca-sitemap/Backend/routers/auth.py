@@ -1,37 +1,42 @@
-from fastapi import APIRouter, Depends, Request, Form
+from fastapi import FastAPI, APIRouter, Depends, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 
 from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
-from database import get_db
-from models import User
+from Backend.database import get_db
+from Backend.models import User
 from passlib.context import CryptContext
   
+app = FastAPI() # Initialize FastAPI
 router = APIRouter() # Define router
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") # Password hashing context
+
+# Templates
+templates = Jinja2Templates(directory="Frontend/templates/login")
 
 
 # Landing Page
 @router.get("/", response_class=HTMLResponse)
 def landing_page(request: Request):
-    return request.app.state.templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 # Check template
 @router.get("/check-template", response_class=HTMLResponse)
 def template_page(request: Request):
-    return request.app.state.templates.TemplateResponse("testtemplate.html", {"request": request})
+    return templates.TemplateResponse("testtemplate.html", {"request": request})
 
 
 # Forgot-Password Page
 @router.get("/forgot-password", response_class=HTMLResponse)
 def forgot_password_page(request: Request):
-    return request.app.state.templates.TemplateResponse("forgot-password.html", {"request": request})
+    return templates.TemplateResponse("forgot-password.html", {"request": request})
  
 
 # Login Page
 @router.get("/login")
 def login_page(request: Request):
-    return request.app.state.templates.TemplateResponse("login.html", {"request": request})
+    return templates.TemplateResponse("login.html", {"request": request})
 
 # Login Action
 @router.post("/login")
@@ -52,7 +57,7 @@ def login(request: Request, email: str = Form(...), password: str = Form(...), d
 # Register Page                           
 @router.get("/register", response_class=HTMLResponse)
 def register_page(request: Request):
-    return request.app.state.templates.TemplateResponse("signup.html", {"request": request})
+    return templates.TemplateResponse("signup.html", {"request": request})
 
 # Register Action
 @router.post("/register")

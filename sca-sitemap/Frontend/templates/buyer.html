@@ -12,6 +12,15 @@
   </head>
 
   <body class="bg-gray-100 font-sans">
+    <!-- Success add popup-->
+    {% if success|int == 1 %}
+    <div
+      id="alert"
+      class="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg"
+    >
+      ✔ Successfully Added!
+    </div>
+    {% endif %}
     <!-- Sidebar -->
     <div class="flex h-screen">
       <aside class="w-64 bg-gray-800 text-gray-100 flex flex-col">
@@ -128,7 +137,7 @@
         <div class="p-6 space-y-6 overflow-y-auto">
           <!-- Inventory Table -->
           <div class="bg-white p-6 rounded-lg shadow">
-            <div
+            <!-- <div
               class="mb-6 flex flex-col md:flex-row md:justify-between md:items-center"
             >
               <h2 class="text-xl font-semibold mb-4">Recent Added</h2>
@@ -154,6 +163,32 @@
                   </svg>
                 </div>
               </div>
+            </div> -->
+
+            <div class="mb-6 flex flex-col">
+              <div class="bg-white p-4 rounded-lg shadow w-full md:w-1/2 mb-4">
+                <div class="relative">
+                  <input
+                    type="text"
+                    class="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Search page..."
+                  />
+                  <svg
+                    class="w-5 h-5 absolute left-3 top-2.5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h2 class="text-xl font-semibold">Recent Added</h2>
             </div>
 
             <table class="w-full border-collapse">
@@ -312,7 +347,9 @@
       </div>
     </div>
   </body>
+
   <script>
+    //User-Profile
     const userMenuButton = document.getElementById("userMenuButton");
     const userDropdown = document.getElementById("userDropdown");
     userMenuButton.addEventListener("click", () => {
@@ -324,6 +361,7 @@
       }
     });
 
+    //Nav Page Selection
     function toggleMenu(menuId) {
       const menu = document.getElementById(menuId);
       const arrow = document.getElementById(menuId.replace("Menu", "Arrow"));
@@ -331,5 +369,15 @@
       menu.classList.toggle("hidden");
       arrow.textContent = menu.classList.contains("hidden") ? "▼" : "▲";
     }
+
+    //Success Popup auto-hide after 3 seconds
+    setTimeout(() => {
+      const alert = document.getElementById("alert");
+      if (alert) {
+        alert.classList.add("opacity-0");
+        alert.classList.add("transition");
+        alert.classList.add("duration-700");
+      }
+    }, 3000);
   </script>
 </html>

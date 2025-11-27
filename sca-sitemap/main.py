@@ -3,8 +3,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
-from routers import auth, dashboard, buyer
-from database import Base, engine
+from pathlib import Path
+from Backend.routers import auth, dashboard, buyer
+from Backend.database import Base, engine
 
 
 
@@ -16,8 +17,8 @@ Base.metadata.create_all(bind=engine)
 
 #Static & Templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-app.state.templates = templates
+# templates = Jinja2Templates(directory="Frontend/templates/login")
+# app.state.templates = templates
 
 #Routers
 app.include_router(auth.router)
